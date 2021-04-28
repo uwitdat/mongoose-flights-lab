@@ -26,14 +26,34 @@ td {
   font-size: 20px;
   padding: 10px;
   border: solid 1px black;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 #new-flight {
   font-size: 20px;
 }
 
-h1 {
-  text-align: center;
-  padding-bottom: 30px;
+#new-form {
+  font-size: 20px;
+}
+
+#time {
+  font-size: 20px;
+}
+
+div {
+  display: inline-block;
+  font-size: 20px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+span {
+  margin-left: 13px;
+  font-weight: bold;
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
 }

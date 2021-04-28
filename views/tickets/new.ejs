@@ -13,13 +13,13 @@
 
     <form id="add-ticket" action='/flights/<%= flightId %>/tickets' method="POST">
         <label>Seat:</label>
-        <input type='text' name="seat" required pattern="[A-F][1-9]\d?">
+        <input type='text' name="seat" required pattern="[A-F][1-9]\d?" id="time">
         <label>Price</label>
-        <input type='number' required name='price' placeholder="$200">
-        <input type='submit' value='Buy Ticket'>
+        <input type='number' required name='price' placeholder="$200" id="time">
+        <input type='submit' value='Buy Ticket' id="time">
     </form>
 
 
-    <a href='/flights/<%=flight.id%>/show'>Back</a>
+    <a id='new-flight' href='/flights/<%=flight.id%>/show'>Back</a>
 </body>
 </html>

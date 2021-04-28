@@ -12,13 +12,13 @@
     <h1>Book A New Flight</h1>
     <form id='new-form' action='/flights' method='POST'>
         <label>Airline:</label>
-        <select name='airline'>
+        <select name='airline' id="time">
             <option value='American'>American</option>
             <option value='Southwest'>Southwest</option>
             <option value='United'>United</option>
         </select>
         <label>Airport:</label>
-        <select name='airport'>
+        <select name='airport' id="time">
             <option value='AUS'>AUS</option>
             <option value='DFW'>DFW</option>
             <option value='DEN'>DEN</option>
@@ -27,15 +27,16 @@
         </select>
         <label>Flight Number:</label>
         <input type='number' name='flightNo' value='10'
+        id="time"
         min='10' max='9999'>
 
         <label>Departs</label>
-        <input type="datetime-local" id="meeting-time"
+        <input type="datetime-local" id="time"
         name="departs" value="yyyy/mm/dd" required
         min="2021-04-23T00:00" max="2022-04-23T00:00"><br><br>
-        <input type='submit' value='Book Flight'>    
+        <input type='submit' value='Book Flight' id="time">    
     </form><br>
 
-    <a href='/flights'>Back</a>
+    <a id='new-flight'  href='/flights'>Back</a>
 </body>
 </html>

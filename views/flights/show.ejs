@@ -11,15 +11,15 @@
 <body>
     <h1>Showing Flight: <%=flight.airline%>: <%= flight.flightNo %> </h1>
 
-    <div>Flight:<%= flight.airline %> </div>
-    <div>Airport: <%= flight.airport %></div>
-    <div>Flight Number:<%= flight.flightNo %> </div>
-    <div>Flight Date: <%= flight.departs?.toLocaleString('en-US') %></div>
+    <div>Flight:<span><%= flight.airline %></span> </div><br>
+    <div>Airport: <span><%= flight.airport %></span></div><br>
+    <div>Flight Number:<span><%= flight.flightNo %></span> </div><br>
+    <div>Flight Date: <span><%= flight.departs?.toLocaleString('en-US') %></span></div><br>
 
     <h1>Book A Destination</h1>
     <form id='new-dest-form' action='/destinations/<%=flight.id%>/show' method='POST'>
         <label>Airline:</label>
-        <select name='airport'>
+        <select name='airport' id="time">
             <option value='AUS'>AUS</option>
             <option value='DFW'>DFW</option>
             <option value='DEN'>DEN</option>
@@ -27,26 +27,30 @@
             <option value='SAN'>SAN</option>
         </select>
         <label>Destinations</label>
-        <input type="datetime-local" id="meeting-time"
-        name="arrival" required
+        <input type="datetime-local" id="time"
+        name="arrival" required 
         min="2021-04-23T00:00" max="2022-04-23T00:00"><br><br>
-        <input type='submit' value='Book Destination'>    
+        <input type='submit' value='Book Destination' id="time">    
     </form><br>
 
-  <%  if(flight.destinations.length > 0){ %>
 
+
+  <%  if(flight.destinations.length === 0){ %>
+    <h1> No Destinations Yet</h1>
+    <% }; %>
+
+    <%  if(flight.destinations.length > 0){ %>
     <h1>Showing All Destinations</h1>
-    <table id="destinations-table">
+    <table id="flights-table">
         <thead>
-        <tr>
+        <tr id='rows'>
             <th>Airline:</th>
             <th>Arrival:</th>
         </tr>
         </thead>
         <tbody>
-      <% flight.destinations.forEach((destination) => { %>
-                
-            <tr>
+      <% flight.destinations.forEach((destination) => { %>                
+            <tr id='rows'>
                 <td><%= destination.airport %></td>
                 <td><%= destination.arrival?.toLocaleString('en-US') %></td>              
             </tr>
@@ -55,18 +59,23 @@
     </table>
 <% }; %>
 
-<% if(ticket.seat = null) { %>
+<%  if(ticket.length === 0){ %>
+    <h1> No Tickets Yet</h1>
+    <% }; %>
+
+<% if(ticket.length > 0){ %>
     <h1>Showing Tickets</h1>
-    <table id="tickets-table">
+    <table id="flights-table">
         <thead>
-        <tr>
+        <tr id='rows'>
             <th>Seat:</th>
             <th>Price:</th>
         </tr>
         </thead>
         <tbody>
             <% ticket.forEach((ticket) => { %>
-        <tr>
+                
+        <tr id='rows'>
             <td><%=ticket.seat%></td>
             <td>$<%=ticket.price%></td>
         </tr>     
@@ -74,7 +83,7 @@
         <% }); %>
     </table>
 <% }; %>
-    <a href='/flights/<%=flight._id%>/tickets/new'>Buy a New Ticket</a><br>
-    <a href='/flights'>Back</a>
+    <a id='new-flight' href='/flights/<%=flight._id%>/tickets/new'>Buy a New Ticket</a><br>
+    <a id='new-flight' href='/flights'>Back</a>
 </body>
 </html>
