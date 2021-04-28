@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Flight Details</title>
+    <%- include('../partials/nav') %>
+</head>
+<body>
+    <h1>Showing Flight: <%=flight.airline%>: <%= flight.flightNo %> </h1>
+
+    <div>Flight:<%= flight.airline %> </div>
+    <div>Airport: <%= flight.airport %></div>
+    <div>Flight Number:<%= flight.flightNo %> </div>
+    <div>Flight Date: <%= flight.departs?.toLocaleString('en-US') %></div>
+
+    <h1>Book A Destination</h1>
+    <form id='new-dest-form' action='/destinations/<%=flight.id%>/show' method='POST'>
+        <label>Airline:</label>
+        <select name='airport'>
+            <option value='AUS'>AUS</option>
+            <option value='DFW'>DFW</option>
+            <option value='DEN'>DEN</option>
+            <option value='LAX'>LAX</option>
+            <option value='SAN'>SAN</option>
+        </select>
+        <label>Destinations</label>
+        <input type="datetime-local" id="meeting-time"
+        name="arrival" required
+        min="2021-04-23T00:00" max="2022-04-23T00:00"><br><br>
+        <input type='submit' value='Book Destination'>    
+    </form><br>
+
+  <%  if(flight.destinations.length > 0){ %>
+
+    <h1>Showing All Destinations</h1>
+    <table id="destinations-table">
+        <thead>
+        <tr>
+            <th>Airline:</th>
+            <th>Arrival:</th>
+        </tr>
+        </thead>
+        <tbody>
+      <% flight.destinations.forEach((destination) => { %>
+                
+            <tr>
+                <td><%= destination.airport %></td>
+                <td><%= destination.arrival?.toLocaleString('en-US') %></td>              
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% }; %>
+
+<% if(ticket.seat = null) { %>
+    <h1>Showing Tickets</h1>
+    <table id="tickets-table">
+        <thead>
+        <tr>
+            <th>Seat:</th>
+            <th>Price:</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% ticket.forEach((ticket) => { %>
+        <tr>
+            <td><%=ticket.seat%></td>
+            <td>$<%=ticket.price%></td>
+        </tr>     
+        </tbody>
+        <% }); %>
+    </table>
+<% }; %>
+    <a href='/flights/<%=flight._id%>/tickets/new'>Buy a New Ticket</a><br>
+    <a href='/flights'>Back</a>
+</body>
+</html>

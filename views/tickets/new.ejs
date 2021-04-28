@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>New Ticket</title>
+    <%- include('../partials/nav') %>
+</head>
+<body>
+    <h1>Buy a New Ticket</h1>
+
+    <form id="add-ticket" action='/flights/<%= flightId %>/tickets' method="POST">
+        <label>Seat:</label>
+        <input type='text' name="seat" required pattern="[A-F][1-9]\d?">
+        <label>Price</label>
+        <input type='number' required name='price' placeholder="$200">
+        <input type='submit' value='Buy Ticket'>
+    </form>
+
+
+    <a href='/flights/<%=flight.id%>/show'>Back</a>
+</body>
+</html>
